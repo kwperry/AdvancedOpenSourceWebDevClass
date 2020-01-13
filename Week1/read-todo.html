@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+        <script type="text/javascript">
+                      
+            let content = document.querySelector('div')
+            let myRequest = 'http://localhost:3000/todo'
+            
+            fetch(myRequest)
+            .then(function(response) {              
+                return response.json()               
+            })
+            .then(function(json) { 
+                console.log(json)
+                let html = "<table style='width:100%'><tr><th>Completed</th><th>ID</th><th>Title</th><th>User ID</th></tr>";
+                data = json
+                for ( let index in data) {
+                    html += '<tr>';
+                    html += `<td>${data[index].completed}</td>`;
+                    html += `<td>${data[index].id}</td>`;
+                    html += `<td>${data[index].title}</td>`;
+                    html += `<td>${data[index].userId}</td>`;
+                }
+                html += '</table>'
+                content.innerHTML = html
+            })
+            
+           
+        </script>
+        
+    </body>
+</html>
